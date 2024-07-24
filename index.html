@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsualización de Imagen</title>
+</head>
+
+<body>
+    <h1>Previsualización de Imagen</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="imageUpload">Selecciona una imagen:</label>
+        <input type="file" id="imageUpload" name="image" accept="image/*">
+        <br>
+        <img id="imagePreview" src="#" alt="Previsualización"
+            style="display:none; max-width: 300px; max-height: 300px;">
+        <br>
+        <button type="submit">Enviar Imagen</button>
+    </form>
+
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                let output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+
+</html>
